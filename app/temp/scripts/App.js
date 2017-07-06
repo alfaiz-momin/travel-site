@@ -11116,7 +11116,7 @@ var _Modal2 = _interopRequireDefault(_Modal);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mobileMenu = new _MobileMenu2.default();
-new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "20%");
 new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
 var stickyHeader = new _StickyHeader2.default();
 var modal = new _Modal2.default();
@@ -11269,6 +11269,7 @@ var StickyHeader = function () {
 	function StickyHeader() {
 		_classCallCheck(this, StickyHeader);
 
+		this.lazyImages = (0, _jquery2.default)(".lazyload");
 		this.siteHeader = (0, _jquery2.default)(".site-header");
 		this.headerTriggerElement = (0, _jquery2.default)(".large-hero__title");
 		this.creatHeaderWaypoint();
@@ -11276,9 +11277,17 @@ var StickyHeader = function () {
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a");
 		this.creatPageSectionWaypoint();
 		this.addSmoothScrooling();
+		this.refreshWaypoints();
 	}
 
 	_createClass(StickyHeader, [{
+		key: 'refreshWaypoints',
+		value: function refreshWaypoints() {
+			this.lazyImages.on(function () {
+				Waypoint.refreshAll();
+			});
+		}
+	}, {
 		key: 'addSmoothScrooling',
 		value: function addSmoothScrooling() {
 			this.headerLinks.smoothScroll();
